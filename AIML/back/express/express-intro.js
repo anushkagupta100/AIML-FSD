@@ -6,10 +6,17 @@ const port = 3000;
 app.get('/',(req,res)=>{
     res.send("Welcome to Express")
 });
+app.use(express.json());   //middleware
+app.post('/users',(req,res)=>{
+    const {name} = req.body;
+    res.send(`My name is ${name}`)
+});
+
 app.get('/api/:name/:rollno',(req,res)=>{
     try{
         const {name,rollno} = req.params;
-        res.send(`Welcome ${name} and your rollno is ${rollno}`);     //http://localhost:3000/api/anushka/2342
+        res.send(`Welcome ${name} and your rollno is ${rollno}`);     
+        //http://localhost:3000/api/anushka/2342
     }catch(error){
         console.log(`Error: ${error.message}`);
     }
