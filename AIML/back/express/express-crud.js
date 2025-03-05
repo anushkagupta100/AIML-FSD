@@ -38,6 +38,20 @@ app.get("/getusers/:id",(req,res)=>{
     const user = users.find(user => user.id==id);
     res.send(user);
 });
+app.patch("/api/updateUser/:id",(req,res)=>{
+    const { id } = req.params;
+    const{ name } = req.body;
+    const index = users.findIndex(user => user.id==id);
+    users[index].name=name;
+    res.send("user is updated successfully");
+});
+app.delete("/api/deleteuser/:id",(req,res)=>{
+    const {id} = req.params;
+    const user = users.findIndex(user => user.id==id);
+    users.splice(user,1);
+    res.send("user is updated successfully");
+});
+
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`)
